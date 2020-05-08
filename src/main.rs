@@ -1,9 +1,11 @@
+#[derive(Debug)]
 enum Episode {
     Jo,
     Ha,
     Q,
 }
 
+#[derive(Debug)]
 struct Human {
     id: String,
     name: String,
@@ -16,4 +18,5 @@ fn main() {
         name: "Ikari Shinji".to_owned(),
         appears_in: vec![Episode::Jo, Episode::Ha, Episode::Q],
     };
+    println!("{:?}", ikari_shinji);
 }
