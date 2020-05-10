@@ -19,7 +19,7 @@ fn main() -> Result<(), serde_json::error::Error> {
         unit: "01".to_owned(),
         pilot: name.to_owned(),
     };
-
+
     let sachiel = Character::Angel {
         id: "4".to_owned(),
         name: "Sachiel".to_owned(),
