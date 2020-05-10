@@ -65,7 +65,7 @@ fn main() {
 
     println!("Ikari Shinji \n {}", ikari_shinji_str);
 
-    let ayanami_rei_str = "{\"_id\":[\"1\"],\"appears_in\":[\"/episode/Jo\",\"/episode/Ha\",\"/episode/Q\"],\"name\":[\"Ikari Shinji\"]}";
-    let anayami_rei: Human = serde_json::from_str(&ayanami_rei_str).unwrap();
+    let ayanami_rei_doc = "{\"_id\":[\"0\"],\"appears_in\":[\"/episode/Jo\",\"/episode/Ha\",\"/episode/Q\"],\"name\":[\"Ayanami Rei\"]}";
+    let anayami_rei: Human = serde_json::from_str(&ayanami_rei_doc).unwrap();
     println!("{:?}", anayami_rei);
 }
