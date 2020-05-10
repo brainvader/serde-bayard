@@ -1,5 +1,8 @@
 use serde::{de, Deserialize, Serialize};
 
+use std::fs::File;
+use std::path::Path;
+
 #[derive(Debug, Serialize, Deserialize)]
 enum Episode {
     #[serde(alias = "/episode/Jo")]
@@ -54,7 +57,13 @@ where
     deserializer.deserialize_seq(visitor)
 }
 
-fn main() {
+fn open_file() -> std::io::Result<File> {
+    let path_to_file = Path::new("./fixture/ayanami_rei.json");
+    let file = File::open(path_to_file)?;
+    Ok(file)
+}
+
+fn main() -> Result<(), serde_json::error::Error> {
     let ikari_shinji = Human {
         id: "1".to_owned(),
         name: "Ikari Shinji".to_owned(),
@@ -63,9 +72,10 @@ fn main() {
     let ikari_shinji_str =
         serde_json::to_string(&ikari_shinji).expect("cant't convert into string");
 
-    println!("Ikari Shinji \n {}", ikari_shinji_str);
+    println!("Ikari Shinji \n {}\n", ikari_shinji_str);
 
-    let ayanami_rei_doc = "{\"_id\":[\"0\"],\"appears_in\":[\"/episode/Jo\",\"/episode/Ha\",\"/episode/Q\"],\"name\":[\"Ayanami Rei\"]}";
-    let anayami_rei: Human = serde_json::from_str(&ayanami_rei_doc).unwrap();
+    let file = open_file().expect("can't open file");
+    let anayami_rei: Human = serde_json::from_reader(file).unwrap();
     println!("{:?}", anayami_rei);
+    Ok(())
 }
