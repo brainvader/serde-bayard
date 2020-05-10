@@ -1,5 +1,5 @@
 [package]
-name = "serde-hierarchical-facet"
+name = "serde-bayard"
 version = "0.1.0"
 authors = ["BrainVader <brainvade@gmail.com>"]
 edition = "2018"
